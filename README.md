@@ -415,7 +415,7 @@ Controls may change during development.
 * [x] Basic game scene
 * [x] Player car
 * [x] Basic car movement
-* [ ] Road environment
+* [x] Road environment
 * [ ] Continuous road movement
 * [ ] Environment movement
 * [ ] Obstacle system
@@ -454,8 +454,8 @@ Controls may change during development.
 * [x] Configure Rigidbody
 * [x] Create car controller
 * [x] Implement left/right movement
-* [ ] Configure collision detection
-* [ ] Test player controls
+* [x] Configure collision detection
+* [x] Test player controls
 
 ---
 
@@ -472,11 +472,9 @@ Controls may change during development.
 
 ## Phase 4 — Environment
 
-* [ ] Add trees
-* [ ] Add bushes
-* [ ] Add mountains
-* [ ] Add terrain
-* [ ] Add roadside objects
+* [x] Add trees
+* [x] Add bushes
+* [x] Add roadside objects
 * [ ] Implement environment movement
 * [ ] Implement environment recycling
 * [ ] Improve scene composition
