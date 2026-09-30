@@ -413,7 +413,7 @@ Controls may change during development.
 
 * [x] Unity project setup
 * [x] Basic game scene
-* [ ] Player car
+* [x] Player car
 * [ ] Basic car movement
 * [ ] Road environment
 * [ ] Continuous road movement
@@ -450,7 +450,7 @@ Controls may change during development.
 ## Phase 2 — Player System
 
 * [x] Import/create car model
-* [ ] Create player GameObject
+* [x] Create player GameObject
 * [ ] Configure Rigidbody
 * [ ] Create car controller
 * [ ] Implement left/right movement
