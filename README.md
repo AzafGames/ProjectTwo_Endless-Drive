@@ -411,8 +411,8 @@ Controls may change during development.
 
 ### ✅ Implemented
 
-* [ ] Unity project setup
-* [ ] Basic game scene
+* [x] Unity project setup
+* [x] Basic game scene
 * [ ] Player car
 * [ ] Basic car movement
 * [ ] Road environment
@@ -439,17 +439,17 @@ Controls may change during development.
 ## Phase 1 — Project Setup
 
 * [x] Create Unity project
-* [ ] Configure project settings
-* [ ] Create GitHub repository
-* [ ] Configure `.gitignore`
-* [ ] Create folder structure
-* [ ] Create initial scene
+* [x] Configure project settings
+* [x] Create GitHub repository
+* [x] Configure `.gitignore`
+* [x] Create folder structure
+* [x] Create initial scene
 
 ---
 
 ## Phase 2 — Player System
 
-* [ ] Import/create car model
+* [x] Import/create car model
 * [ ] Create player GameObject
 * [ ] Configure Rigidbody
 * [ ] Create car controller
