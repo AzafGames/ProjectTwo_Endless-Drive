@@ -416,8 +416,8 @@ Controls may change during development.
 * [x] Player car
 * [x] Basic car movement
 * [x] Road environment
-* [ ] Continuous road movement
-* [ ] Environment movement
+* [x] Continuous road movement
+* [x] Environment movement
 * [ ] Obstacle system
 * [ ] Collectible system
 * [ ] Score system
@@ -462,11 +462,11 @@ Controls may change during development.
 ## Phase 3 — Road System
 
 * [x] Create road
-* [ ] Create reusable road segments
-* [ ] Implement road movement
-* [ ] Implement road recycling
-* [ ] Test infinite-road illusion
-* [ ] Optimize road generation
+* [x] Create reusable road segments
+* [x] Implement road movement
+* [x] Implement road recycling
+* [x] Test infinite-road illusion
+* [] Optimize road generation
 
 ---
 
@@ -475,17 +475,17 @@ Controls may change during development.
 * [x] Add trees
 * [x] Add bushes
 * [x] Add roadside objects
-* [ ] Implement environment movement
-* [ ] Implement environment recycling
+* [x] Implement environment movement
+* [x] Implement environment recycling
 * [ ] Improve scene composition
 
 ---
 
 ## Phase 5 — Obstacles
 
-* [ ] Create obstacle prefabs
-* [ ] Create obstacle spawning system
-* [ ] Randomize obstacle positions
+* [x] Create obstacle prefabs
+* [x] Create obstacle spawning system
+* [x] Randomize obstacle positions
 * [ ] Implement collision detection
 * [ ] Implement obstacle recycling
 * [ ] Add difficulty progression
@@ -494,8 +494,8 @@ Controls may change during development.
 
 ## Phase 6 — Collectibles & Score
 
-* [ ] Create collectible prefab
-* [ ] Implement collectible spawning
+* [x] Create collectible prefab
+* [x] Implement collectible spawning
 * [ ] Detect collection
 * [ ] Create score manager
 * [ ] Update score UI
