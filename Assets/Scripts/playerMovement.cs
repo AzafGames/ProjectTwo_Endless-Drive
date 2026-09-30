@@ -7,6 +7,8 @@ public class playerMovement : MonoBehaviour
     public InputAction moveKey;
     private Vector2 moveAction;
 
+    private float xRange = 4.7f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,9 +18,19 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Read keyboard/controller input
         moveAction = moveKey.ReadValue<Vector2>();
 
-        transform.Translate(Vector3.right * speed * Time.deltaTime * moveAction.x);
+        // Get current position
+        Vector3 position = transform.position;
 
+        // Apply movement
+        position.x += speed * Time.deltaTime * moveAction.x;
+
+        // Keep player inside the X boundaries
+        position.x = Mathf.Clamp(position.x, -xRange, xRange);
+
+        // Apply final position
+        transform.position = position;
     }
 }
