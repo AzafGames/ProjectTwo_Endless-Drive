@@ -6,6 +6,7 @@ public class playerMovement : MonoBehaviour
     private float speed = 15;
     public InputAction moveKey;
     private Vector2 moveAction;
+    private Rigidbody rb;
 
     private float xRange = 4.7f;
 
@@ -13,10 +14,11 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         moveKey.Enable();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Read keyboard/controller input
         moveAction = moveKey.ReadValue<Vector2>();
@@ -30,7 +32,7 @@ public class playerMovement : MonoBehaviour
         // Keep player inside the X boundaries
         position.x = Mathf.Clamp(position.x, -xRange, xRange);
 
-        // Apply final position
-        transform.position = position;
+        //Move using Rigidbody physics
+        rb.MovePosition(position);
     }
 }
