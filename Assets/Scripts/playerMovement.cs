@@ -3,17 +3,29 @@ using UnityEngine.InputSystem;
 
 public class playerMovement : MonoBehaviour
 {
+    // Movement speed of the player
     private float speed = 15;
+
+    // Input Action field to map controls (e.g., WASD / Arrow keys) in the Inspector
     public InputAction moveKey;
+
+    // Stores the directional input vector read from the input action
     private Vector2 moveAction;
+
+    // Reference to the player's Rigidbody component for physics movement
     private Rigidbody rb;
 
+    // Left and right movement limit along the X-axis
     private float xRange = 4.7f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        // Enable the input action so it can start listening for player inputs
         moveKey.Enable();
+
+        // Get and store the Rigidbody component attached to this GameObject
         rb = GetComponent<Rigidbody>();
     }
 
