@@ -18,6 +18,8 @@ public class playerMovement : MonoBehaviour
     // Left and right movement limit along the X-axis
     private float xRange = 4.7f;
 
+    public collisionChecker collisionChecker;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,7 +41,10 @@ public class playerMovement : MonoBehaviour
         Vector3 position = transform.position;
 
         // Apply movement
-        position.x += speed * Time.deltaTime * moveAction.x;
+        if (collisionChecker.isGameOver == false)
+        {
+            position.x += speed * Time.deltaTime * moveAction.x;
+        }
 
         // Keep player inside the X boundaries
         position.x = Mathf.Clamp(position.x, -xRange, xRange);

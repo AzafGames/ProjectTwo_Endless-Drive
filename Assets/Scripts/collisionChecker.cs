@@ -6,12 +6,19 @@ public class collisionChecker : MonoBehaviour
     public static bool isGameOver = false;
 
     // Keeps track of the total collected points (persists across collisions)
-    private int i = 0;
+    public static int score = 0;
+
+    public ParticleSystem explosionEffect;
+    public ParticleSystem coinCollectEffect;
+
+    public AudioSource audioSource;
+    public AudioClip coinCollectSound;
+    public AudioClip explosionSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,23 +31,29 @@ public class collisionChecker : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         // Check if the object we hit has the "Collectible" tag
-        if (other.gameObject.CompareTag("Collectible"))
+        if (other.gameObject.CompareTag("Collectible") && isGameOver == false)
         {
             // Remove the collectible object from the scene
             Destroy(other.gameObject);
 
+            coinCollectEffect.Play();
+            audioSource.PlayOneShot(coinCollectSound, 1.0f);
+
             // Increase point count by 1
-            i++;
+            score++;
 
             // Print the updated point total to the Console
-            Debug.Log(i + " point collected");
+            Debug.Log(score + " point collected");
         }
         // Check if the object we hit has the "Obstacle" tag
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            // Destroy both the player object and the obstacle
-            Destroy(gameObject);
+ 
+            // Destroy the obstacle
             Destroy(other.gameObject);
+
+            explosionEffect.Play();
+            audioSource.PlayOneShot(explosionSound, 1.0f);
 
             // Display Game Over in the Console and update the game over status
             Debug.Log("Game Over!");

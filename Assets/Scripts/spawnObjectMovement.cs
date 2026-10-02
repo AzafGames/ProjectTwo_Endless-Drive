@@ -8,6 +8,8 @@ public class spawnObjectMovement : MonoBehaviour
     // The Z-axis distance limit before the object gets removed from the scene
     private int maxRangeZ = -100;
 
+    public collisionChecker collisionChecker;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,8 +19,11 @@ public class spawnObjectMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move the object backward smoothly every frame
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        if (collisionChecker.isGameOver == false)
+        {
+            // Move the object backward smoothly every frame
+            transform.Translate(Vector3.back * speed * Time.deltaTime);
+        }
 
         // Check if the object has moved past the backward boundary
         if (transform.position.z <= maxRangeZ)
