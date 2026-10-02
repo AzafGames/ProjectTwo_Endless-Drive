@@ -418,16 +418,16 @@ Controls may change during development.
 * [x] Road environment
 * [x] Continuous road movement
 * [x] Environment movement
-* [ ] Obstacle system
-* [ ] Collectible system
-* [ ] Score system
+* [x] Obstacle system
+* [x] Collectible system
+* [x] Score system
 * [ ] Health system
-* [ ] Collision system
+* [x] Collision system
 * [ ] Game-over system
 * [ ] Gameplay UI
 * [ ] Restart system
-* [ ] Audio
-* [ ] Visual effects
+* [x] Audio
+* [x] Visual effects
 * [ ] Difficulty progression
 
 > This checklist will be updated as development progresses.
@@ -486,7 +486,7 @@ Controls may change during development.
 * [x] Create obstacle prefabs
 * [x] Create obstacle spawning system
 * [x] Randomize obstacle positions
-* [ ] Implement collision detection
+* [x] Implement collision detection
 * [ ] Implement obstacle recycling
 * [ ] Add difficulty progression
 
@@ -496,11 +496,11 @@ Controls may change during development.
 
 * [x] Create collectible prefab
 * [x] Implement collectible spawning
-* [ ] Detect collection
-* [ ] Create score manager
-* [ ] Update score UI
-* [ ] Add collectible effects
-* [ ] Add collectible sound
+* [x] Detect collection
+* [x] Create score manager
+* [x] Update score UI
+* [x] Add collectible effects
+* [x] Add collectible sound
 
 ---
 
@@ -530,7 +530,7 @@ Controls may change during development.
 
 * [ ] Main menu
 * [ ] Gameplay HUD
-* [ ] Score display
+* [x] Score display
 * [ ] Health display
 * [ ] Pause menu
 * [ ] Game-over screen
@@ -542,11 +542,11 @@ Controls may change during development.
 ## Phase 10 — Audio & Effects
 
 * [ ] Engine sound
-* [ ] Collision sound
-* [ ] Collectible sound
+* [x] Collision sound
+* [x] Collectible sound
 * [ ] Background music
-* [ ] Crash effects
-* [ ] Particle effects
+* [x] Crash effects
+* [x] Particle effects
 * [ ] Camera shake
 * [ ] Visual feedback
 
