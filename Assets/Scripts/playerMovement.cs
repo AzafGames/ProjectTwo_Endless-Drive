@@ -18,6 +18,7 @@ public class playerMovement : MonoBehaviour
     // Left and right movement limit along the X-axis
     private float xRange = 4.7f;
 
+    // Reference to the collisionChecker script to monitor game state
     public collisionChecker collisionChecker;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,7 +41,7 @@ public class playerMovement : MonoBehaviour
         // Get current position
         Vector3 position = transform.position;
 
-        // Apply movement
+        // Apply horizontal movement only while the game is NOT over
         if (collisionChecker.isGameOver == false)
         {
             position.x += speed * Time.deltaTime * moveAction.x;
