@@ -3,7 +3,7 @@ using UnityEngine;
 public class spawnObjectMovement : MonoBehaviour
 {
     // Speed at which the spawned object moves backward (units per second)
-    private float speed = 15f;
+    private float speed = 20f;
 
     // The Z-axis distance limit before the object gets removed from the scene
     private int maxRangeZ = -100;
@@ -25,6 +25,7 @@ public class spawnObjectMovement : MonoBehaviour
         {
             // Move the object backward smoothly in world space using DeltaTime for frame-rate independence
             transform.Translate(Vector3.back * speed * Time.deltaTime);
+            
         }
 
         // Check if the object has moved past the backward cleanup boundary line

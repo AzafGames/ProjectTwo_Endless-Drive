@@ -3,10 +3,10 @@ using UnityEngine;
 public class collisionChecker : MonoBehaviour
 {
     // Global flag to track if the game is over across all scripts
-    public static bool isGameOver = false;
+    public static bool isGameOver;
 
     // Keeps track of the total collected points (persists across collisions)
-    public static int score = 0;
+    public static int score;
 
     // Particle effect references assigned via the Inspector
     public ParticleSystem explosionEffect;
@@ -16,12 +16,22 @@ public class collisionChecker : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip coinCollectSound;
     public AudioClip explosionSound;
+    
+
+    
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Reset game state when scene starts/restarts
+        isGameOver = false;
+        score = 0;
+
         // Get and store the AudioSource component attached to this GameObject
         audioSource = GetComponent<AudioSource>();
+
+        
     }
 
     // Update is called once per frame

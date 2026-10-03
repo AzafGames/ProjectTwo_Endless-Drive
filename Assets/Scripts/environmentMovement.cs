@@ -3,7 +3,7 @@ using UnityEngine;
 public class environmentMovement : MonoBehaviour
 {
     // Speed at which the environment moves backward (units per second)
-    private float speed = 15f;
+    private float speed = 20f;
 
     // The Z position to reset the environment back to for endless scrolling
     private float startPos = 312f;
