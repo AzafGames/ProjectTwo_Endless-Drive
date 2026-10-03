@@ -423,9 +423,9 @@ Controls may change during development.
 * [x] Score system
 * [ ] Health system
 * [x] Collision system
-* [ ] Game-over system
-* [ ] Gameplay UI
-* [ ] Restart system
+* [x] Game-over system
+* [x] Gameplay UI
+* [x] Restart system
 * [x] Audio
 * [x] Visual effects
 * [ ] Difficulty progression
@@ -466,7 +466,7 @@ Controls may change during development.
 * [x] Implement road movement
 * [x] Implement road recycling
 * [x] Test infinite-road illusion
-* [] Optimize road generation
+* [ ] Optimize road generation
 
 ---
 
@@ -507,22 +507,22 @@ Controls may change during development.
 ## Phase 7 — Health & Damage
 
 * [ ] Create health system
-* [ ] Implement collision damage
+* [x] Implement collision damage
 * [ ] Create health UI
 * [ ] Add damage feedback
-* [ ] Add crash effects
+* [x] Add crash effects
 * [ ] Implement zero-health condition
 
 ---
 
 ## Phase 8 — Game State
 
-* [ ] Create Game Manager
-* [ ] Start game state
-* [ ] Playing state
-* [ ] Pause state
-* [ ] Game-over state
-* [ ] Restart system
+* [x] Create Game Manager
+* [x] Start game state
+* [x] Playing state
+* [x] Pause state
+* [x] Game-over state
+* [x] Restart system
 
 ---
 
@@ -532,9 +532,9 @@ Controls may change during development.
 * [ ] Gameplay HUD
 * [x] Score display
 * [ ] Health display
-* [ ] Pause menu
-* [ ] Game-over screen
-* [ ] Restart button
+* [x] Pause menu
+* [x] Game-over screen
+* [x] Restart button
 * [ ] UI animations
 
 ---
