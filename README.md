@@ -544,7 +544,7 @@ Controls may change during development.
 * [ ] Engine sound
 * [x] Collision sound
 * [x] Collectible sound
-* [ ] Background music
+* [x] Background music
 * [x] Crash effects
 * [x] Particle effects
 * [ ] Camera shake
