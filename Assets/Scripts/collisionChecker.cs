@@ -16,13 +16,9 @@ public class collisionChecker : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip coinCollectSound;
     public AudioClip explosionSound;
-    
 
-    
-    
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         // Reset game state when scene starts/restarts
         isGameOver = false;
@@ -30,21 +26,20 @@ public class collisionChecker : MonoBehaviour
 
         // Get and store the AudioSource component attached to this GameObject
         audioSource = GetComponent<AudioSource>();
-
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // Runs automatically whenever this GameObject collides with another 3D object
     private void OnCollisionEnter(Collision other)
     {
-        // Check if the object we hit has the "Collectible" tag and the game is still active
-        if (other.gameObject.CompareTag("Collectible") && isGameOver == false)
+        // Stop if game is over
+        if (isGameOver)
+        {
+            return;
+        }
+
+        // Check for collectible
+        if (other.gameObject.CompareTag("Collectible"))
         {
             // Remove the collectible object from the scene
             Destroy(other.gameObject);
@@ -58,7 +53,8 @@ public class collisionChecker : MonoBehaviour
             // Increase point count by 1
             score++;
         }
-        // Check if the object we hit has the "Obstacle" tag
+
+        // Check for obstacle
         else if (other.gameObject.CompareTag("Obstacle"))
         {
             // Destroy the obstacle object

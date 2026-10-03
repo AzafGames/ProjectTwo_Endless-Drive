@@ -1,154 +1,128 @@
 using UnityEngine;
-using TMPro; // Required for using TextMeshPro UI elements
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
-    // Reference to the collisionChecker script to access the current score
-    public collisionChecker collisionChecker;
+    // Score UI
+    [SerializeField] private TextMeshProUGUI scoreText;
 
-    // Reference to the TextMeshPro UI element that displays the score on screen
-    public TextMeshProUGUI scoreText;
+    // Game over UI
+    [SerializeField] private TextMeshProUGUI gameOverText;
 
-    public TextMeshProUGUI GameOverText;
+    // Game buttons
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button exitButton;
 
-    public Button startButton;
+    // Game state
+    public static bool isStartButtonClicked;
+    public static bool isPauseButtonClicked;
+    public static bool isRestartButtonClicked;
 
-    public static bool isStartButtonClicked = false;
-    public static bool isPauseButtonClicked = false;
-    public static bool isRestartButtonClicked = false;
-
-    public Button pauseButton;
-
-    public Button restartButton;
-
-    public Button resumeButton;
-
-    public Button exitButton;
-
-    
-
-    
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
+        // Pause game at start
         Time.timeScale = 0f;
 
-        
+        // Reset states
+        isStartButtonClicked = false;
+        isPauseButtonClicked = false;
+        isRestartButtonClicked = false;
 
-        // Score UI
+        // Show start UI
         scoreText.gameObject.SetActive(true);
-        
-        // Hide Game Over UI
-        GameOverText.gameObject.SetActive(false);
-
-        // Shows Start Button on Start 
         startButton.gameObject.SetActive(true);
-
-        // Shows Exit Button on Start
         exitButton.gameObject.SetActive(true);
 
-        // Hide Pause button
+        // Hide other UI
+        gameOverText.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(false);
-
-        // Hides Resume Button
         resumeButton.gameObject.SetActive(false);
-
-        // Hide Restart button
         restartButton.gameObject.SetActive(false);
 
-
+        // Show initial score
+        UpdateScoreUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // Continuously update the UI text to reflect the current score from collisionChecker
-        scoreText.text = "Score: " + collisionChecker.score;
+        // Update score
+        UpdateScoreUI();
 
-        if (collisionChecker.isGameOver == true)
+        // Check game over
+        if (collisionChecker.isGameOver)
         {
-            // Show Game Over UI
-            GameOverText.gameObject.SetActive(true);
-
-            // Show Restart button
+            gameOverText.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
-
-            // Hide Pause button
             pauseButton.gameObject.SetActive(false);
-
-            // Shows Exit button
+            resumeButton.gameObject.SetActive(false);
             exitButton.gameObject.SetActive(true);
         }
     }
 
+    // Update score text
+    private void UpdateScoreUI()
+    {
+        scoreText.text = "Score: " + collisionChecker.score;
+    }
+
+    // Start game
     public void StartGame()
     {
         isStartButtonClicked = true;
+        isPauseButtonClicked = false;
         isRestartButtonClicked = false;
 
         Time.timeScale = 1f;
 
-        // Hide Play button
-        startButton.gameObject.SetActive(false); 
-
-        // Show Pause button
-        pauseButton.gameObject.SetActive(true); 
-        
-        // Keep Restart hidden
+        startButton.gameObject.SetActive(false);
+        pauseButton.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(false);
-
-        // Hide Exit button
         exitButton.gameObject.SetActive(false);
     }
 
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-
+    // Pause game
     public void PauseGame()
     {
         isPauseButtonClicked = true;
 
         Time.timeScale = 0f;
 
-        // Keep Pause button hidden
-        pauseButton.gameObject.SetActive(false); 
-
-        // Shows Resume Button
+        pauseButton.gameObject.SetActive(false);
         resumeButton.gameObject.SetActive(true);
-
-        // Restart Button Remains Hidden
         restartButton.gameObject.SetActive(false);
-
-        // Shows Exit button
-        exitButton.gameObject.SetActive(true);
+        exitButton.gameObject.SetActive(false);
     }
 
+    // Resume game
     public void ResumeGame()
     {
         isPauseButtonClicked = false;
 
         Time.timeScale = 1f;
 
-        // Hide Resume Button
         resumeButton.gameObject.SetActive(false);
-
-        // Show Pause Button
         pauseButton.gameObject.SetActive(true);
+        exitButton.gameObject.SetActive(false);
     }
 
+    // Restart game
     public void RestartGame()
     {
         isRestartButtonClicked = true;
-        // Make sure time is running before loading the scene
+
         Time.timeScale = 1f;
 
-        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
-    
+
+    // Exit game
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

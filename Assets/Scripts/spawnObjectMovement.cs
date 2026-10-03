@@ -1,38 +1,47 @@
+
 using UnityEngine;
 
 public class spawnObjectMovement : MonoBehaviour
 {
-    // Speed at which the spawned object moves backward (units per second)
-    private float speed = 20f;
+    // Movement speed
+    [SerializeField] private float speed = 20f;
 
-    // The Z-axis distance limit before the object gets removed from the scene
-    private int maxRangeZ = -100;
+    // Z-axis cleanup boundary
+    [SerializeField] private float maxRangeZ = -100f;
 
-    // Reference to the collisionChecker script to check if the game is active
-    public collisionChecker collisionChecker;
+    // Reference to collisionChecker
+    private collisionChecker collisionChecker;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Rigidbody reference
+    private Rigidbody rb;
+
+
+    private void Awake()
     {
-        // Initialization logic can be placed here if needed
+        // Get Rigidbody attached to this object
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
-        // Only move the spawned object while the game is NOT over
-        if (collisionChecker.isGameOver == false)
+        // Stop movement when the game is over
+        if (collisionChecker.isGameOver)
         {
-            // Move the object backward smoothly in world space using DeltaTime for frame-rate independence
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
-            
+            return;
         }
 
-        // Check if the object has moved past the backward cleanup boundary line
-        if (transform.position.z <= maxRangeZ)
+        // Calculate movement
+        Vector3 movement = Vector3.back * speed * Time.fixedDeltaTime;
+
+        // Move using Rigidbody physics
+        rb.MovePosition(rb.position + movement);
+
+        // Destroy object after passing the cleanup boundary
+        if (rb.position.z <= maxRangeZ)
         {
-            // Destroy this GameObject to keep the scene hierarchy clean and free up memory
             Destroy(gameObject);
         }
     }
 }
+

@@ -1,56 +1,66 @@
+
 using UnityEngine;
 
-public class spawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
-    // Array to hold the prefabs to spawn (e.g., collectibles, obstacles)
-    public GameObject[] spawnObject;
+    // Objects that can be spawned
+    [SerializeField] private GameObject[] spawnObjects;
 
-    // Fixed X positions (lanes) where objects can spawn
-    private int[] fixedPos = { -3, 3 };
+    // Available X positions / lanes
+    private readonly int[] fixedPos = { -3, 3 };
 
-    // Initial delay before spawning starts (in seconds)
-    private int startDelay = 1;
+    // Spawn settings
+    private float startDelay = 1f;
+    private float spawnInterval = 1f;
 
-    // Time interval between consecutive spawns (in seconds)
-    private int spawnInterval = 1;
+    // Spawn position
+    private float spawnPosY = 1f;
+    private float spawnPosZ = -60f;
 
-    // Fixed Y and Z coordinates for spawning objects
-    private int spawnPosY = 1;
-    private int spawnPosZ = -60;
-
-    // Reference to the collisionChecker script to check game state
+    // Reference to collisionChecker
     private collisionChecker collisionChecker;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void OnEnable()
     {
-        // Repeatedly calls the SpawnRandomObject method starting after startDelay seconds
+        // Start spawning when this object becomes enabled
         InvokeRepeating("SpawnRandomObject", startDelay, spawnInterval);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
+    private void OnDisable()
+    {
+        // Stop spawning when this object becomes disabled
+        CancelInvoke("SpawnRandomObject");
     }
 
-    // Custom method to spawn a random object at a random lane position
-    void SpawnRandomObject()
+
+    private void SpawnRandomObject()
     {
-        // Only spawn objects if the game is NOT over
-        if (collisionChecker.isGameOver == false)
+        // Don't spawn if the game is over
+        if (collisionChecker.isGameOver)
         {
-            // Pick a random object from the spawnObject array
-            int objectIndex = Random.Range(0, spawnObject.Length);
-
-            // Pick a random lane index from the fixedPos array
-            int randomPosIndex = Random.Range(0, fixedPos.Length);
-
-            // Combine chosen X position with fixed Y and Z coordinates
-            Vector3 randomPos = new Vector3(fixedPos[randomPosIndex], spawnPosY, spawnPosZ);
-
-            // Create (spawn) the selected prefab at the calculated position and default rotation
-            Instantiate(spawnObject[objectIndex], randomPos, spawnObject[objectIndex].transform.rotation);
+            return;
         }
+
+        // Select random prefab
+        int objectIndex = Random.Range(0, spawnObjects.Length);
+
+        // Select random lane
+        int randomPosIndex = Random.Range(0, fixedPos.Length);
+
+        // Create spawn position
+        Vector3 spawnPosition = new Vector3(
+            fixedPos[randomPosIndex],
+            spawnPosY,
+            spawnPosZ
+        );
+
+        // Spawn object
+        Instantiate(
+            spawnObjects[objectIndex],
+            spawnPosition,
+            spawnObjects[objectIndex].transform.rotation
+        );
     }
 }

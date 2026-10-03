@@ -19,33 +19,49 @@ public class playerMovement : MonoBehaviour
     private float xRange = 4.7f;
 
     // Reference to the collisionChecker script to monitor game state
-    public collisionChecker collisionChecker;
+    public GameManager gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-
-        // Enable the input action so it can start listening for player inputs
-        moveKey.Enable();
-
         // Get and store the Rigidbody component attached to this GameObject
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void OnEnable()
+    { 
+
+      // Enable input action
+      moveKey.Enable(); 
+
+    }
+
+    private void OnDisable()
     {
-        // Read keyboard/controller input
-        moveAction = moveKey.ReadValue<Vector2>();
+        moveKey.Disable();
+    }
+
+    private void Update()
+    { 
+      
+      // Read player input
+      moveAction = moveKey.ReadValue<Vector2>(); 
+    }
+
+    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        // Stop movement when the game has not started
+        if (!GameManager.isStartButtonClicked)
+        {
+            return;
+        }
 
         // Get current position
         Vector3 position = transform.position;
 
         // Apply horizontal movement only while the game is NOT over
-        if (collisionChecker.isGameOver == false)
-        {
-            position.x += speed * Time.deltaTime * moveAction.x;
-        }
+        position.x += speed * Time.deltaTime * moveAction.x;
 
         // Keep player inside the X boundaries
         position.x = Mathf.Clamp(position.x, -xRange, xRange);
