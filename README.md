@@ -632,31 +632,8 @@ The initial goal is to create a **playable prototype** before adding advanced vi
 
 ---
 
-# 📸 Screenshots
 
-Screenshots and gameplay demonstrations will be added here as development progresses.
 
-### Gameplay
-
-> Coming soon...
-
-### Main Menu
-
-> Coming soon...
-
-### Game Over
-
-> Coming soon...
-
----
-
-# 🎥 Gameplay Demonstration
-
-A gameplay video will be added after the first playable prototype is completed.
-
-> 🎬 Gameplay video — Coming soon
-
----
 
 # 📚 Learning Goals
 
