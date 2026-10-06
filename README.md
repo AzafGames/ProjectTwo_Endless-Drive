@@ -421,7 +421,7 @@ Controls may change during development.
 * [x] Obstacle system
 * [x] Collectible system
 * [x] Score system
-* [ ] Health system
+* [x] Health system
 * [x] Collision system
 * [x] Game-over system
 * [x] Gameplay UI
