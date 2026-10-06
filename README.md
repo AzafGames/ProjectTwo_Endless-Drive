@@ -506,9 +506,9 @@ Controls may change during development.
 
 ## Phase 7 — Health & Damage
 
-* [ ] Create health system
+* [x] Create health system
 * [x] Implement collision damage
-* [ ] Create health UI
+* [x] Create health UI
 * [ ] Add damage feedback
 * [x] Add crash effects
 * [ ] Implement zero-health condition
@@ -531,7 +531,7 @@ Controls may change during development.
 * [ ] Main menu
 * [ ] Gameplay HUD
 * [x] Score display
-* [ ] Health display
+* [x] Health display
 * [x] Pause menu
 * [x] Game-over screen
 * [x] Restart button
