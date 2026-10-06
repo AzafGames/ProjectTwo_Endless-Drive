@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     // Game over UI
     [SerializeField] private TextMeshProUGUI gameOverText;
 
+    // Health UI
+    [SerializeField] private TextMeshProUGUI healthText;
+
     // Game buttons
     [SerializeField] private Button startButton;
     [SerializeField] private Button pauseButton;
@@ -53,6 +56,8 @@ public class GameManager : MonoBehaviour
         // Update score
         UpdateScoreUI();
 
+        UpdateHealthUI();
+
         // Check game over
         if (collisionChecker.isGameOver)
         {
@@ -68,6 +73,11 @@ public class GameManager : MonoBehaviour
     private void UpdateScoreUI()
     {
         scoreText.text = "Score: " + collisionChecker.score;
+    }
+
+    private void UpdateHealthUI()
+    {
+        healthText.text = "Health: " + collisionChecker.Carhealth + "%";
     }
 
     // Start game

@@ -6,7 +6,7 @@ public class environmentMovement : MonoBehaviour
     private float speed = 20f;
 
     // The Z position to reset the environment back to for endless scrolling
-    private float startPos = 200.9f;
+    private float startPos = 200f;
 
     // The Z threshold position that triggers the reset once crossed
     private float maxRangeZ = -24f;

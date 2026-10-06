@@ -5,8 +5,12 @@ public class collisionChecker : MonoBehaviour
     // Global flag to track if the game is over across all scripts
     public static bool isGameOver;
 
+    public GameManager gameManager;
+
     // Keeps track of the total collected points (persists across collisions)
-    public static int score;
+    public static float score;
+
+    public static float Carhealth;
 
     // Particle effect references assigned via the Inspector
     public ParticleSystem explosionEffect;
@@ -23,6 +27,7 @@ public class collisionChecker : MonoBehaviour
         // Reset game state when scene starts/restarts
         isGameOver = false;
         score = 0;
+        Carhealth = 100;
 
         // Get and store the AudioSource component attached to this GameObject
         audioSource = GetComponent<AudioSource>();
@@ -66,8 +71,22 @@ public class collisionChecker : MonoBehaviour
             // Play the explosion sound effect at full volume
             audioSource.PlayOneShot(explosionSound, 1.0f);
 
-            // Set the global game state flag to true to end the game
-            isGameOver = true;
+            
+            Carhealth -= 50;
         }
+
+        if (Carhealth <=0)
+        {
+            isGameOver = true;
+
+        }
+        
+        if (Carhealth <= 0 && GameManager.isRestartButtonClicked)
+        {
+
+            Carhealth = 100;
+        }
+        
+        
     }
 }
