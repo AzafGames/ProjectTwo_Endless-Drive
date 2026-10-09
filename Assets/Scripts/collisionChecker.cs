@@ -75,7 +75,7 @@ public class collisionChecker : MonoBehaviour
             Carhealth -= 50;
         }
 
-        if (Carhealth <=0)
+        if (Carhealth <= 0)
         {
             isGameOver = true;
 

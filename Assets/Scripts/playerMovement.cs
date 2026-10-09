@@ -4,51 +4,54 @@ using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
     // Movement speed of the player
-    private float speed = 15;
+    private float speed = 15f;
 
-    // Input Action field to map controls (e.g., WASD / Arrow keys) in the Inspector
+    // Input Action field to map controls
+    // Example: WASD / Arrow keys
     public InputAction moveKey;
 
-    // Stores the directional input vector read from the input action
+    // Stores keyboard/controller directional input
     private Vector2 moveAction;
 
-    // Reference to the player's Rigidbody component for physics movement
+    // Stores UI button movement input
+    // -1 = Left
+    //  0 = Stop
+    // +1 = Right
+    private float uiMoveInput;
+
+    // Reference to the player's Rigidbody
     private Rigidbody rb;
 
     // Left and right movement limit along the X-axis
     private float xRange = 4.7f;
 
-    // Reference to the collisionChecker script to monitor game state
+    // Reference to GameManager
     public GameManager gameManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        // Get and store the Rigidbody component attached to this GameObject
+        // Get Rigidbody component
         rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
-    { 
-
-      // Enable input action
-      moveKey.Enable(); 
-
+    {
+        // Enable input action
+        moveKey.Enable();
     }
 
     private void OnDisable()
     {
+        // Disable input action
         moveKey.Disable();
     }
 
     private void Update()
-    { 
-      
-      // Read player input
-      moveAction = moveKey.ReadValue<Vector2>(); 
+    {
+        // Read keyboard/controller input
+        moveAction = moveKey.ReadValue<Vector2>();
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         // Stop movement when the game has not started
@@ -57,16 +60,43 @@ public class playerMovement : MonoBehaviour
             return;
         }
 
+        
+
+        // Combine keyboard/controller input
+        // with UI button input
+        float horizontalInput = moveAction.x + uiMoveInput;
+
+        // Keep the value between -1 and 1
+        horizontalInput = Mathf.Clamp(horizontalInput, -1f, 1f);
+
         // Get current position
         Vector3 position = transform.position;
 
-        // Apply horizontal movement only while the game is NOT over
-        position.x += speed * Time.deltaTime * moveAction.x;
+        // Apply horizontal movement
+        position.x += speed * Time.fixedDeltaTime * horizontalInput;
 
-        // Keep player inside the X boundaries
+        // Keep player inside X boundaries
         position.x = Mathf.Clamp(position.x, -xRange, xRange);
 
-        //Move using Rigidbody physics
+        // Move using Rigidbody physics
         rb.MovePosition(position);
+    }
+
+    // Called by GameManager when Left button is pressed
+    public void MoveLeft()
+    {
+        uiMoveInput = -1f;
+    }
+
+    // Called by GameManager when Right button is pressed
+    public void MoveRight()
+    {
+        uiMoveInput = 1f;
+    }
+
+    // Called by GameManager when Left/Right button is released
+    public void StopMoving()
+    {
+        uiMoveInput = 0f;
     }
 }
